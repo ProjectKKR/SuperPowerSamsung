@@ -7,6 +7,8 @@ public class PlayerController : MonoBehaviour {
 	public float moveSpeed;
 	public float terminalRotationSpeed = 25.0f;
 	public Camera mainCamera;
+	private Ray ray;
+	private RaycastHit hit;
 
 	private Vector3 MoveVector;
 	private Rigidbody rb;
@@ -27,8 +29,16 @@ public class PlayerController : MonoBehaviour {
 			rb.velocity = rb.velocity.normalized * 0.8f * norm;
 		if (MoveVector == Vector3.zero)
 			rb.velocity = Vector3.zero;
-
 		gameObject.transform.Rotate (new Vector3(0,jsR.Turn ()*1.3f,0));
+
+		if(Input.GetMouseButtonDown(0)){
+			ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+
+			if(Physics.Raycast(ray, out hit, Mathf.Infinity)){
+				GameItems clickObj = hit.transform.gameObject.GetComponent<GameItems>();
+				if (clickObj!=null) clickObj.ClickInteraction ();
+			}
+		}
 	}
 
 	private Vector3 PoolRightInput(){
