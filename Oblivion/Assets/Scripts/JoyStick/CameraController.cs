@@ -13,9 +13,6 @@ public class CameraController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		pos = Player.transform.position;
-		pos.z += 0.5F;
-		gameObject.transform.position = pos;
 		//gameObject.transform.Rotate (new Vector3(0,jsl.Turn (),0));
 	}
 }
