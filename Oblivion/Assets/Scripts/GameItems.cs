@@ -19,8 +19,5 @@ public abstract class GameItems : MonoBehaviour {
 		}
 	}
 
-	void get () {
-		// TODO compare distance, then call ClickInteraction method
-	}
 	public abstract void ClickInteraction ();
 }

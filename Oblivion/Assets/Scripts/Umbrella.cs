@@ -15,7 +15,8 @@ public class Umbrella : GameItems {
 	
 	}
 
-	public void ClickInteraction() {
+	public override void ClickInteraction() {
+		;
 		// TODO
 	}
 }
