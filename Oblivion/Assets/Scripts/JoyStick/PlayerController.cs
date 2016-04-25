@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class PlayerController : MonoBehaviour {
 	public VirtualJoystick_left jsL;
@@ -14,9 +15,13 @@ public class PlayerController : MonoBehaviour {
 	private Rigidbody rb;
 	// Use this for initialization
 
+	private List<GameItems> inventory;
+
 	void Start () {
 		rb = gameObject.GetComponent<Rigidbody> ();
 		rb.maxAngularVelocity = terminalRotationSpeed;
+
+		inventory = new List<GameItems> ();
 	}
 	
 	// Update is called once per frame
@@ -35,12 +40,14 @@ public class PlayerController : MonoBehaviour {
 			ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 
 			if(Physics.Raycast(ray, out hit, Mathf.Infinity)){
-				GameItems clickObj = hit.transform.gameObject.GetComponent<GameItems>();
-				if (clickObj != null) {
-					Debug.Log ("Click GameItems");
-					clickObj.ClickInteraction ();
-				} else {
-					Debug.Log ("Click nothing");
+				GameObject clickObj = hit.transform.gameObject;
+				GameItems obj = clickObj.GetComponent<GameItems>();
+				if (obj != null) {
+					Vector3 objloc = clickObj.transform.position;
+					float distance = (transform.position - objloc).magnitude;
+					if (distance <= obj.distanceThreshold) {
+						obj.ClickInteraction ();
+					}
 				}
 			}
 		}

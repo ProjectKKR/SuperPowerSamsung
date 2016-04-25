@@ -11,12 +11,19 @@ public class Door : GameItems {
 
 	// Use this for initialization
 	void Start () {
+		// TODO
+		interactable = true;
+		distanceThreshold = 2.0f;
 		openFlag = 1.0f;
 	}
 	
 	// Update is called once per frame
-	public override void ClickInteraction() {
+	protected override void Interaction () {
 		axis.transform.Rotate (new Vector3 (0, 70.0f * openFlag, 0));
 		openFlag = - openFlag;
+	}
+
+	protected override void PostProcess () {
+		;
 	}
 }

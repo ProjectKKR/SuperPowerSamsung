@@ -3,21 +3,26 @@ using System.Collections;
 
 public abstract class GameItems : MonoBehaviour {
 	public bool interactable;
+	public bool collectable;
 	public bool zoomable;
 	public bool visible;
 
-	protected Vector3 zoomCameraLocation;
-	public Vector3 ZoomCameraLocation {
-		get {
-			return zoomCameraLocation;
-		}
-	}
-	protected float distanceThreshold;
-	public float DistanceThreshold {
-		get {
-			return distanceThreshold;
+	protected bool postProcessFlag = false;
+
+	public Vector3 zoomCameraLocation;
+
+	public float distanceThreshold;
+
+	public
+	void ClickInteraction () {
+		if (interactable) {
+			Interaction ();
+			if (postProcessFlag) {
+				PostProcess ();
+			}
 		}
 	}
 
-	public abstract void ClickInteraction ();
+	protected abstract void Interaction ();
+	protected abstract void PostProcess ();
 }
