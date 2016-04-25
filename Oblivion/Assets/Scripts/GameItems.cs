@@ -2,9 +2,9 @@
 using System.Collections;
 
 public abstract class GameItems : MonoBehaviour {
-	bool interactable;
-	bool zoomable;
-	bool visible;
+	public bool interactable;
+	public bool zoomable;
+	public bool visible;
 
 	protected Vector3 zoomCameraLocation;
 	public Vector3 ZoomCameraLocation {

@@ -36,7 +36,12 @@ public class PlayerController : MonoBehaviour {
 
 			if(Physics.Raycast(ray, out hit, Mathf.Infinity)){
 				GameItems clickObj = hit.transform.gameObject.GetComponent<GameItems>();
-				if (clickObj!=null) clickObj.ClickInteraction ();
+				if (clickObj != null) {
+					Debug.Log ("Click GameItems");
+					clickObj.ClickInteraction ();
+				} else {
+					Debug.Log ("Click nothing");
+				}
 			}
 		}
 	}
