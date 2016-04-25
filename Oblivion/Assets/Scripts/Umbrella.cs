@@ -15,7 +15,7 @@ public class Umbrella : GameItems {
 	
 	}
 
-	public void ClickInteractive() {
+	public void ClickInteraction() {
 		// TODO
 	}
 }
